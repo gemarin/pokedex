@@ -14,6 +14,7 @@ import {
 	StatLabel,
 	StatNumber,
 	StatGroup,
+    Box,
 } from '@chakra-ui/react';
 
 import { STATS_TYPES } from '../API';
@@ -34,7 +35,13 @@ const Pokecard: React.FC<Props> = ({
 	imgName,
 }) => {
 	return (
-		<div aria-label='Display Pokemon'>
+		<Box
+			maxW='500px'
+			w='100%'
+			maxH='600px'
+			h='100%'
+			aria-label='Display Pokemon'
+		>
 			<Card
 				direction={{
 					base: 'column',
@@ -46,8 +53,8 @@ const Pokecard: React.FC<Props> = ({
 			>
 				<Image
 					src={imgName}
-					objectFit='cover'
-					width='200px'
+					objectFit='contain'
+					width='100px'
 					height='200px'
 					alt='Image of Pokemon'
 					borderRadius='base'
@@ -65,10 +72,7 @@ const Pokecard: React.FC<Props> = ({
 					p={1}
 				>
 					<CardBody>
-						<Heading
-							size='lg'
-							textTransform='capitalize'
-						>
+						<Heading size='lg' textTransform='capitalize'>
 							{name}
 						</Heading>
 						<Heading size='md'>#{id}</Heading>
@@ -94,7 +98,7 @@ const Pokecard: React.FC<Props> = ({
 					</Stat>
 				))}
 			</StatGroup>
-		</div>
+		</Box>
 	);
 };
 

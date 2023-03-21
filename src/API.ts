@@ -22,6 +22,9 @@ export const fetchPokemon = async (
 			if (response.ok) {
 				return response.json();
 			}
+			else {
+				throw new Error()
+			}
 		})
 		.then((data) => {
 			if (data) {

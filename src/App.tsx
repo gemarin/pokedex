@@ -6,7 +6,7 @@ import {
 	Stack,
 	Alert,
 	AlertIcon,
-	theme,
+	extendTheme,
 	Image,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
@@ -22,10 +22,16 @@ import SidebarPoke from './components/SidebarPoke';
 //unique id generator
 import { v4 as uuidv4 } from 'uuid';
 
+const theme = extendTheme({
+	fonts: {
+		heading: `'Press Start 2P', cursive`,
+		body: `'Press Start 2P', cursive`,
+	},
+});
 
 // TODO: Write some unit tests if you have time.
 // TODO: error handling in API.js
-
+// TODO: check validate input
 
 export interface pokemon {
 	name?: string;
@@ -38,9 +44,10 @@ export interface pokemon {
 export const App = () => {
 	//States
 	const [pokeList, setPokeList] = useState<pokemon[]>([]);
-	//need their image + unique Ids to delete
+
 	//Before state (no search has happened)
-	const [notEmpty, setNotEmpty] = useState(false);
+	const [noSearchYet, setNoSearchYet] = useState(true);
+
 	//Individual Pokemon
 	const [displayPoke, setDisplayPoke] = useState<pokemon>({
 		name: '',
@@ -71,64 +78,69 @@ export const App = () => {
 		<ChakraProvider theme={theme}>
 			<ColorModeSwitcher justifySelf='flex-end' />
 			<Box
-				// position='absolute'
-				// display='flex'
-				// width={700}
-				// height={500}
-	    position= 'fixed'
-      top= '50%'
-      left= '50%'
-      // -webkit-transform = 'translate(-50%, -50%)'
-      transform= 'translate(-50%, -50%)'
+				position='fixed'
+				top='50%'
+				left='50%'
+				transform='translate(-50%, -50%)'
+				maxW='700px'
+				w='100%'
+				maxH='700px'
+				h='100%'
 			>
 				<Stack direction='row' align='center' flex='center'>
-					<Stack
-						spacing='50%'
-						direction='column'
-						align='center'
-						flex='center'
-					>
-						{/* Search bar  - handles search and enter search button*/}
-						<Search
-							setPoke={setDisplayPoke}
-							setNotEmpty={setNotEmpty}
-						/>
-						{/* Display results from search in pokecard */}
-						{notEmpty ? (
-							<Pokecard
-								name={displayPoke.name!}
-								types={displayPoke.types!}
-								id={displayPoke.id}
-								stats={displayPoke.stats!}
-								imgName={displayPoke.img}
-							/>
-						) : (
-							<>
-								<Image
-									src={waitingGif}
-									alt='Snorlax Waving'
-								/>
-								Search Something!
-							</>
-						)}
-						{/* capture button to add to sidebar */}
-						<Button
-              width='100%'
-							onClick={() => {
-								notEmpty
-									? updatePokeList()
-									: console.log('search something!');
-							}}
+					<Box p='4' boxShadow='outline' rounded='md'>
+						<Stack
+							flex='1'
+							spacing='20%'
+							direction='column'
+							align='center'
+							// flex='center'
 						>
-							Capture
-						</Button>
-					</Stack>
+							{/* Search bar  - handles search and enter search button*/}
+							<Search
+								setPoke={setDisplayPoke}
+								setNoSearch={setNoSearchYet}
+							/>
+							{/* Display results from search in pokecard */}
+							{noSearchYet ? (
+								<>
+									<Image
+										src={waitingGif}
+										alt='Snorlax Waving'
+										width='200px'
+										height='200px'
+									/>
+									Search Something!
+								</>
+							) : (
+								<Pokecard
+									name={displayPoke.name!}
+									types={displayPoke.types!}
+									id={displayPoke.id}
+									stats={displayPoke.stats!}
+									imgName={displayPoke.img}
+								/>
+							)}
+							{/* capture button to add to sidebar */}
+							<Button
+								width='100%'
+								onClick={() => {
+									!noSearchYet && updatePokeList();
+								}}
+								_active={{ color: noSearchYet && 'tomato' }}
+							>
+								Capture
+							</Button>
+						</Stack>
+					</Box>
 					{/* sidebar that handles state of current captured poke and removes them when clicked */}
-					<SidebarPoke
-						capturedPoke={pokeList}
-						setPokeList={setPokeList}
-						pokeList={pokeList}
-					/>
+					{pokeList.length > 0 && (
+						<SidebarPoke
+							capturedPoke={pokeList}
+							setPokeList={setPokeList}
+							pokeList={pokeList}
+						/>
+					)}
 				</Stack>
 			</Box>
 		</ChakraProvider>

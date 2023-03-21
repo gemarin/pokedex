@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
-import { Image } from '@chakra-ui/react';
+import { Image, Heading, Box } from '@chakra-ui/react';
 
 import { pokemon } from '../App';
 
@@ -23,27 +23,37 @@ const SidebarPoke: React.FC<Props> = ({
 	};
 
 	return (
-		<div >
-			{capturedPoke.map((poke) => {
-				return (
-					<Image
-						backgroundColor={'gray.200'}
-						// loading='lazy'
-						key={poke.id}
-						height='auto'
-						alt='Captured Pokemon'
-						src={poke.img}
-						objectFit='cover'
-						borderRadius='base'
-						onClick={(e) => {
-							releasePoke(
-								(e.target as HTMLMediaElement).src
-							);
-						}}
-					/>
-				);
-			})}
-		</div>
+		<Box
+			p='4'
+			boxShadow='outline'
+			rounded='md'
+			maxW='200px'
+			w='100%'
+			maxH='900px'
+			h='100%'
+		>
+			<Heading size='md'>Captured</Heading>
+			<Box>
+				{capturedPoke.map((poke) => {
+					return (
+						<Image
+							backgroundColor={'gray.200'}
+							key={poke.id}
+							height='auto'
+							alt='Captured Pokemon'
+							src={poke.img}
+							objectFit='cover'
+							borderRadius='base'
+							onClick={(e) => {
+								releasePoke(
+									(e.target as HTMLMediaElement).src
+								);
+							}}
+						/>
+					);
+				})}
+			</Box>
+		</Box>
 	);
 };
 
