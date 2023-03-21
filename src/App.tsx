@@ -30,8 +30,6 @@ const theme = extendTheme({
 	},
 });
 
-
-// TODO: error handling in API.js -> fix
 // TODO: check validate input -> fix
 // TODO: Write some unit tests if you have time.
 //TODO: if all done first, then animate cards on sidebar
@@ -120,7 +118,7 @@ export const App = () => {
 										height='200px'
 									/>
 									<Text fontSize='1.3vw'>
-										Search Something!
+										Gotta catch 'em all?
 									</Text>
 								</>
 							) : (
