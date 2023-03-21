@@ -8,7 +8,7 @@ import {
 	AlertIcon,
 	extendTheme,
 	Image,
-	AbsoluteCenter,
+	Text
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 
@@ -80,17 +80,24 @@ export const App = () => {
 	return (
 		<ChakraProvider theme={theme}>
 			<ColorModeSwitcher justifySelf='flex-end' />
+
 			<Box
 				position='fixed'
 				top='50%'
 				left='50%'
 				transform='translate(-50%, -50%)'
+				webkit-transform='translate(-50%, -50%)'
 				maxW='700px'
 				w='100%'
 				maxH='700px'
 				h='100%'
 			>
-				<Stack direction='row' align='center' flex='center'>
+				<Stack
+					justifyContent='center'
+					direction='row'
+					align='center'
+					flex='center'
+				>
 					<Box p='4' boxShadow='outline' rounded='md'>
 						<Stack
 							flex='1'
@@ -112,9 +119,9 @@ export const App = () => {
 										width='200px'
 										height='200px'
 									/>
-									<text fontSize='1.3vw'>
+									<Text fontSize='1.3vw'>
 										Search Something!
-									</text>
+									</Text>
 								</>
 							) : (
 								<Pokecard

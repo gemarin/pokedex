@@ -23,7 +23,8 @@ export const fetchPokemon = async (
 				return response.json();
 			}
 			else {
-				throw new Error()
+				throw new Error(`Invalid response status: ${response.status}`);
+			
 			}
 		})
 		.then((data) => {
@@ -55,5 +56,5 @@ export const fetchPokemon = async (
 					),
 				],
 			} as pokemon};
-		}).catch(e => {console.log('not today')});
+		}).catch(e => { console.log(e); 	});
 };

@@ -33,19 +33,18 @@ const SidebarPoke: React.FC<Props> = ({
 			maxH='900px'
 			h='100%'
 		>
-			<Heading size='md'>Captured</Heading>
+			<Heading fontSize='1.4vw'>Captured</Heading>
 			<span>
 				{capturedPoke.map((poke) => {
 					return (
 						<Image
 							backgroundColor={'gray.200'}
-							// display='block'
-							m='1'
-							ml='8'
+							mt='1'
+							ml='12'
 							key={poke.id}
 							width='65px'
 							height='65px'
-							// height='auto'
+
 							alt='Captured Pokemon'
 							src={poke.img}
 							objectFit='cover'
