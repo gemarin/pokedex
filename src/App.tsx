@@ -8,6 +8,7 @@ import {
 	AlertIcon,
 	extendTheme,
 	Image,
+	AbsoluteCenter,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 
@@ -29,9 +30,11 @@ const theme = extendTheme({
 	},
 });
 
+
+// TODO: error handling in API.js -> fix
+// TODO: check validate input -> fix
 // TODO: Write some unit tests if you have time.
-// TODO: error handling in API.js
-// TODO: check validate input
+//TODO: if all done first, then animate cards on sidebar
 
 export interface pokemon {
 	name?: string;
@@ -91,10 +94,9 @@ export const App = () => {
 					<Box p='4' boxShadow='outline' rounded='md'>
 						<Stack
 							flex='1'
-							spacing='20%'
+							spacing='10%'
 							direction='column'
 							align='center'
-							// flex='center'
 						>
 							{/* Search bar  - handles search and enter search button*/}
 							<Search
@@ -110,7 +112,9 @@ export const App = () => {
 										width='200px'
 										height='200px'
 									/>
-									Search Something!
+									<text fontSize='1.3vw'>
+										Search Something!
+									</text>
 								</>
 							) : (
 								<Pokecard

@@ -16,6 +16,7 @@ const SidebarPoke: React.FC<Props> = ({
 	setPokeList,
 	pokeList,
 }) => {
+	//delete pokemon from pokelist
 	const releasePoke = (imageSrc: string) => {
 		setPokeList(
 			pokeList.filter((poke) => poke.img !== imageSrc)
@@ -33,13 +34,18 @@ const SidebarPoke: React.FC<Props> = ({
 			h='100%'
 		>
 			<Heading size='md'>Captured</Heading>
-			<Box>
+			<span>
 				{capturedPoke.map((poke) => {
 					return (
 						<Image
 							backgroundColor={'gray.200'}
+							// display='block'
+							m='1'
+							ml='8'
 							key={poke.id}
-							height='auto'
+							width='65px'
+							height='65px'
+							// height='auto'
 							alt='Captured Pokemon'
 							src={poke.img}
 							objectFit='cover'
@@ -52,8 +58,8 @@ const SidebarPoke: React.FC<Props> = ({
 						/>
 					);
 				})}
-			</Box>
-		</Box>
+			</span>
+	 </Box>
 	);
 };
 

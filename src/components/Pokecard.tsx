@@ -50,11 +50,12 @@ const Pokecard: React.FC<Props> = ({
 				overflow='hidden'
 				variant='unstyled'
 				size='lg'
+				pb='4'
 			>
 				<Image
 					src={imgName}
 					objectFit='contain'
-					width='100px'
+					width='200px'
 					height='200px'
 					alt='Image of Pokemon'
 					borderRadius='base'
@@ -68,19 +69,24 @@ const Pokecard: React.FC<Props> = ({
 					flex={1}
 					flexDirection='column'
 					justifyContent='center'
-					alignItems='center'
-					p={1}
+					pl='3'
 				>
 					<CardBody>
-						<Heading size='lg' textTransform='capitalize'>
+						<Heading
+							fontSize='1.9vw'
+							textTransform='capitalize'
+						>
 							{name}
 						</Heading>
-						<Heading size='md'>#{id}</Heading>
-						<Text pt='14'>Type:</Text>
+						<Heading fontSize='1.6vw'>#{id}</Heading>
+						<Text pt='14' fontSize='1.6vw'>
+							Type:
+						</Text>
 						<>
 							{types.flat().map((type) => (
 								<>
-									<Badge>{type}</Badge> <br />
+									<Badge variant='subtle'>{type}</Badge>{' '}
+									<br />
 								</>
 							))}
 						</>
@@ -91,7 +97,10 @@ const Pokecard: React.FC<Props> = ({
 			<StatGroup>
 				{stats.flat().map((item, index) => (
 					<Stat>
-						<StatLabel textTransform='capitalize'>
+						<StatLabel
+							fontSize='1vw'
+							 textTransform='capitalize'
+						>
 							{STATS_TYPES[index]}
 						</StatLabel>
 						<StatNumber> {item} </StatNumber>
