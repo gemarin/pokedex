@@ -1,4 +1,4 @@
-import React, { useState,  } from 'react';
+import React, { useState } from 'react';
 import {
 	ChakraProvider,
 	Box,
@@ -66,12 +66,14 @@ export const App = () => {
 					{ id: newId, img: `${displayPoke.img}?${newId}` },
 				];
 			});
-		} 
+		}
 	};
 
 	return (
 		<ChakraProvider theme={theme}>
-			<ColorModeSwitcher justifySelf='flex-end' />
+			<ColorModeSwitcher
+				justifySelf='flex-end'
+			/>
 			<Box
 				position='fixed'
 				top='50%'
