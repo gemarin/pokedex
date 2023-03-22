@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,  } from 'react';
 import {
 	ChakraProvider,
 	Box,
@@ -46,10 +46,11 @@ export const App = () => {
 	const [noSearchYet, setNoSearchYet] =
 		useState<boolean>(true);
 
+
+
 	//checks if pokemon card is open in order to slide pokemon in and out
 	const [isCardOpen, setIsCardOpen] =
 		useState<boolean>(false);
-
 
 	//Individual Pokemon
 	const [displayPoke, setDisplayPoke] = useState<pokemon>({
@@ -142,7 +143,13 @@ export const App = () => {
 										isCardOpen &&
 										updatePokeList();
 								}}
-								_active={{ color: (noSearchYet || (pokeList.length > 5)) && 'tomato' }}
+								_active={{
+									color:
+										(noSearchYet ||
+											!isCardOpen ||
+											pokeList.length > 5) &&
+										'tomato',
+								}}
 							>
 								Capture
 							</Button>

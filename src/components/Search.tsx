@@ -36,8 +36,7 @@ const Search: React.FC<Props> = ({
 			setCard(true);
 			setNoSearch(false);
 			setSearch('');
-
-			}
+		}
 		
 	};
 
