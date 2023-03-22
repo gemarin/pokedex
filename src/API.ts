@@ -11,50 +11,59 @@ export const fetchPokemon = async (
 	searchName?: string,
 	searchId?: number
 ) => {
+	console.log(searchName);
 	const endpoint = `https://pokeapi.co/api/v2/pokemon/${
 		(searchName && searchName) || (searchId && searchId)
 	}`;
 
-	//TODO: add in error handling for invalid requests
+	console.log(endpoint);
 
 	return fetch(endpoint)
 		.then((response) => {
+			console.log(response)
 			if (response.ok) {
 				return response.json();
-			}
-			else {
-				throw new Error(`Invalid response status: ${response.status}`);
-			
+			} else {
+				throw new Error(
+					`Invalid response status: ${response.status}`
+				);
 			}
 		})
 		.then((data) => {
 			if (data) {
-			return {
-				id: data?.id,
-				name: data?.name,
-				img: data?.sprites.front_default,
-				stats: [
-					data?.stats
-						.map(
-							(item: { stat: any; base_stat: number }) => {
-								if (
-									Object.values(STATS_TYPES).includes(
-										item.stat.name as string
-									)
-								) {
-									return item.base_stat;
+				return {
+					id: data?.id,
+					name: data?.name,
+					img: data?.sprites.front_default,
+					stats: [
+						data?.stats
+							.map(
+								(item: {
+									stat: any;
+									base_stat: number;
+								}) => {
+									if (
+										Object.values(STATS_TYPES).includes(
+											item.stat.name as string
+										)
+									) {
+										return item.base_stat;
+									}
 								}
-							}
-						)
-						.filter((item: any) => item !== undefined),
-				],
-				types: [
-					data?.types.map(
-						(item: { type: { name: string } }) =>
-							item.type.name,
-						{}
-					),
-				],
-			} as pokemon};
-		}).catch(e => { console.log(e); 	});
+							)
+							.filter((item: any) => item !== undefined),
+					],
+					types: [
+						data?.types.map(
+							(item: { type: { name: string } }) =>
+								item.type.name,
+							{}
+						),
+					],
+				} as pokemon;
+			}
+		})
+		.catch((e) => {
+			console.log(e);
+		});
 };

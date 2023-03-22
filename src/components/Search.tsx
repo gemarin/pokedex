@@ -4,11 +4,7 @@ import React, {
 	SetStateAction,
 } from 'react';
 
-import {
-	Input,
-	Button,
-	HStack,
-} from '@chakra-ui/react';
+import { Input, Button, HStack } from '@chakra-ui/react';
 
 //interface
 import { pokemon } from '../App';
@@ -50,7 +46,7 @@ const Search: React.FC<Props> = ({
 			<Input
 				isInvalid={invalidSearch}
 				errorBorderColor='red.300'
-				placeholder={'Search name/id'}
+				placeholder='Search name/id'
 				value={search}
 				onChange={(e) => {
 					setSearch(e.target.value);
