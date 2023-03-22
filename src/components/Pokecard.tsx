@@ -127,7 +127,7 @@ const Pokecard: React.FC<Props> = ({
 				width='200px'
 				height='200px'
 			/>
-			<Text fontSize='1.3vw'>Waiting on valid search...</Text>
+			<Text textAlign='center' fontSize='1.3vw'>Waiting on valid search...</Text>
 		</>
 	);
 };

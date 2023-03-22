@@ -33,7 +33,9 @@ const SidebarPoke: React.FC<Props> = ({
 			maxH='900px'
 			h='100%'
 		>
-			<Heading ml='3' fontSize='lg'>Captured</Heading>
+			<Heading textAlign='center' fontSize='lg'>
+				Captured
+			</Heading>
 			<span>
 				{capturedPoke.map((poke) => {
 					return (
