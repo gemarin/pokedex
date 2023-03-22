@@ -138,7 +138,7 @@ export const App = () => {
 							<Button
 								width='100%'
 								onClick={() => {
-									!noSearchYet && updatePokeList();
+									!noSearchYet && isCardOpen && updatePokeList();
 								}}
 								_active={{ color: noSearchYet && 'tomato' }}
 							>

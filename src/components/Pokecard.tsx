@@ -1,5 +1,7 @@
 import React from 'react';
 
+import missingPoke from '../assets/missing.png'
+
 import {
 	Image,
 	Card,
@@ -15,7 +17,7 @@ import {
 	StatNumber,
 	StatGroup,
 	Box,
-	SlideFade
+	SlideFade,
 } from '@chakra-ui/react';
 
 import { STATS_TYPES } from '../API';
@@ -26,7 +28,7 @@ type Props = {
 	types: string[];
 	stats: string[];
 	imgName: string;
-	cardOpen: boolean; 
+	cardOpen: boolean;
 };
 
 const Pokecard: React.FC<Props> = ({
@@ -35,9 +37,9 @@ const Pokecard: React.FC<Props> = ({
 	types,
 	stats,
 	imgName,
-	cardOpen
+	cardOpen,
 }) => {
-	return (
+	return cardOpen ? (
 		<SlideFade in={cardOpen} offsetY='20px'>
 			<Box
 				maxW='500px'
@@ -63,10 +65,7 @@ const Pokecard: React.FC<Props> = ({
 						height='200px'
 						alt='Image of Pokemon'
 						borderRadius='base'
-						backgroundColor={useColorModeValue(
-							'gray.700',
-							'gray.400'
-						)}
+						backgroundColor='gray.700'
 					/>
 
 					<Stack
@@ -94,13 +93,11 @@ const Pokecard: React.FC<Props> = ({
 											variant='subtle'
 										>
 											{type}
-										</Badge>{' '}
-										{/* <br /> */}
+										</Badge>
 									</>
 								))}
 							</>
 						</CardBody>
-						<CardFooter></CardFooter>
 					</Stack>
 				</Card>
 				<StatGroup>
@@ -118,6 +115,17 @@ const Pokecard: React.FC<Props> = ({
 				</StatGroup>
 			</Box>
 		</SlideFade>
+	) : (
+		<>
+			<Image
+				src={missingPoke}
+				alt='Missing Pokemon'
+				width='400px'
+				height='300px'
+				borderRadius='base'
+			/>
+			<Text fontSize='1.3vw'>Uh oh! No Pokemon found!</Text>
+		</>
 	);
 };
 
