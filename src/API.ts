@@ -33,10 +33,11 @@ export const fetchPokemon = async (
 					img: data?.sprites.front_default,
 					stats: [
 						data?.stats
-							.forEach(
+							.map(
 								(item: {
 									stat: any;
 									base_stat: number;
+								// eslint-disable-next-line array-callback-return
 								}) => {
 									if (
 										Object.values(STATS_TYPES).includes(
