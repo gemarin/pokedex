@@ -36,13 +36,11 @@ const Search: React.FC<Props> = ({
 			search.toLowerCase()
 		);
 		if (results !== undefined) {
-			console.log('reaches');
 			setPoke(results);
 			setCard(true);
 			setNoSearch(false);
 			setSearch('');
 			if (invalidSearchRef.current) {
-				console.log(invalidSearchRef)
 				invalidSearchRef.current = false;
 			}
 		} else {
@@ -63,7 +61,7 @@ const Search: React.FC<Props> = ({
 			/>
 			<Button
 				onClick={() => {
-					invalidSearchRef.current=false;
+					invalidSearchRef.current = false;
 					setCard(false);
 					executeSearch(search);
 				}}

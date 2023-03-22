@@ -33,7 +33,7 @@ export const fetchPokemon = async (
 					img: data?.sprites.front_default,
 					stats: [
 						data?.stats
-							.map(
+							.forEach(
 								(item: {
 									stat: any;
 									base_stat: number;
