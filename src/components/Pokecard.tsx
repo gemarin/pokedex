@@ -1,6 +1,6 @@
 import React from 'react';
 
-import loadingPoke from '../assets/loading.gif'
+import loadingPoke from '../assets/loading.gif';
 
 import {
 	Image,
@@ -74,13 +74,14 @@ const Pokecard: React.FC<Props> = ({
 					>
 						<CardBody>
 							<Heading
-								fontSize='1.9vw'
+								pt='2'
+								fontSize='lg'
 								textTransform='capitalize'
 							>
 								{name}
 							</Heading>
-							<Heading fontSize='1.6vw'>#{id}</Heading>
-							<Text pt='14' fontSize='1.6vw'>
+							<Heading fontSize='md'>#{id}</Heading>
+							<Text pt='14' fontSize='md'>
 								Type:
 							</Text>
 							<>
@@ -103,13 +104,16 @@ const Pokecard: React.FC<Props> = ({
 					{stats.flat().map((item, index) => (
 						<Stat>
 							<StatLabel
-								fontSize='1vw'
+								fontSize='sm'
 								textTransform='capitalize'
 								pr='2'
 							>
 								{STATS_TYPES[index]}
 							</StatLabel>
-							<StatNumber> {item} </StatNumber>
+							<StatNumber fontSize='sm'>
+								
+								{item}
+							</StatNumber>
 						</Stat>
 					))}
 				</StatGroup>
@@ -123,7 +127,7 @@ const Pokecard: React.FC<Props> = ({
 				width='200px'
 				height='200px'
 			/>
-			<Text fontSize='1.3vw'>Waiting...</Text>
+			<Text fontSize='1.3vw'>Waiting on valid search...</Text>
 		</>
 	);
 };

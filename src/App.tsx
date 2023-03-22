@@ -4,8 +4,6 @@ import {
 	Box,
 	Button,
 	Stack,
-	Alert,
-	AlertIcon,
 	extendTheme,
 	Image,
 	Text,
@@ -46,8 +44,6 @@ export const App = () => {
 	const [noSearchYet, setNoSearchYet] =
 		useState<boolean>(true);
 
-
-
 	//checks if pokemon card is open in order to slide pokemon in and out
 	const [isCardOpen, setIsCardOpen] =
 		useState<boolean>(false);
@@ -70,18 +66,12 @@ export const App = () => {
 					{ id: newId, img: `${displayPoke.img}?${newId}` },
 				];
 			});
-		} else {
-			<Alert status='error'>
-				<AlertIcon />
-				Maximum hit!
-			</Alert>;
-		}
+		} 
 	};
 
 	return (
 		<ChakraProvider theme={theme}>
 			<ColorModeSwitcher justifySelf='flex-end' />
-
 			<Box
 				position='fixed'
 				top='50%'
