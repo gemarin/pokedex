@@ -1,17 +1,15 @@
 import React from 'react';
 
-import missingPoke from '../assets/missing.png'
+import loadingPoke from '../assets/loading.gif'
 
 import {
 	Image,
 	Card,
 	Stack,
 	CardBody,
-	CardFooter,
 	Heading,
 	Text,
 	Badge,
-	useColorModeValue,
 	Stat,
 	StatLabel,
 	StatNumber,
@@ -90,6 +88,7 @@ const Pokecard: React.FC<Props> = ({
 									<>
 										<Badge
 											display='inline-block'
+											mr='1'
 											variant='subtle'
 										>
 											{type}
@@ -106,6 +105,7 @@ const Pokecard: React.FC<Props> = ({
 							<StatLabel
 								fontSize='1vw'
 								textTransform='capitalize'
+								pr='2'
 							>
 								{STATS_TYPES[index]}
 							</StatLabel>
@@ -118,13 +118,12 @@ const Pokecard: React.FC<Props> = ({
 	) : (
 		<>
 			<Image
-				src={missingPoke}
-				alt='Missing Pokemon'
-				width='400px'
-				height='300px'
-				borderRadius='base'
+				src={loadingPoke}
+				alt='Pikachu Running Loading image'
+				width='200px'
+				height='200px'
 			/>
-			<Text fontSize='1.3vw'>Uh oh! No Pokemon found!</Text>
+			<Text fontSize='1.3vw'>Waiting...</Text>
 		</>
 	);
 };

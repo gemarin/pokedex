@@ -2,6 +2,7 @@ import React, {
 	useState,
 	Dispatch,
 	SetStateAction,
+	useRef,
 } from 'react';
 
 import { Input, Button, HStack } from '@chakra-ui/react';
@@ -26,28 +27,33 @@ const Search: React.FC<Props> = ({
 	setCard,
 }) => {
 	const [search, setSearch] = useState<string>('');
-	const [invalidSearch, setInvalidSearch] =
-		useState<boolean>(false);
+
+	//useRef instead of useState to avoid asynchronous updating of state
+	const invalidSearchRef = useRef<boolean>(false);
 
 	const executeSearch = async (search: string) => {
 		const results = await fetchPokemon(
 			search.toLowerCase()
 		);
 		if (results !== undefined) {
+			console.log('reaches');
 			setPoke(results);
-			setCard(true)
+			setCard(true);
 			setNoSearch(false);
 			setSearch('');
-			setInvalidSearch(false);
+			if (invalidSearchRef.current) {
+				console.log(invalidSearchRef)
+				invalidSearchRef.current = false;
+			}
 		} else {
-			setInvalidSearch(true);
+			invalidSearchRef.current = true;
 		}
 	};
 
 	return (
 		<HStack>
 			<Input
-				isInvalid={invalidSearch}
+				isInvalid={invalidSearchRef.current}
 				errorBorderColor='red.300'
 				placeholder='Search name/id'
 				value={search}
@@ -57,9 +63,9 @@ const Search: React.FC<Props> = ({
 			/>
 			<Button
 				onClick={() => {
+					invalidSearchRef.current=false;
 					setCard(false);
 					executeSearch(search);
-
 				}}
 			>
 				Search

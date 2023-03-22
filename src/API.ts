@@ -11,16 +11,12 @@ export const fetchPokemon = async (
 	searchName?: string,
 	searchId?: number
 ) => {
-	console.log(searchName);
 	const endpoint = `https://pokeapi.co/api/v2/pokemon/${
 		(searchName && searchName) || (searchId && searchId)
 	}`;
 
-	console.log(endpoint);
-
 	return fetch(endpoint)
 		.then((response) => {
-			console.log(response)
 			if (response.ok) {
 				return response.json();
 			} else {

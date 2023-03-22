@@ -8,7 +8,7 @@ import {
 	AlertIcon,
 	extendTheme,
 	Image,
-	Text
+	Text,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 
@@ -30,10 +30,6 @@ const theme = extendTheme({
 	},
 });
 
-// TODO: check validate input -> fix
-// TODO: Write some unit tests if you have time.
-//TODO: if all done first, then animate cards on sidebar
-
 export interface pokemon {
 	name?: string;
 	id: number | string;
@@ -47,9 +43,13 @@ export const App = () => {
 	const [pokeList, setPokeList] = useState<pokemon[]>([]);
 
 	//Before state (no search has happened)
-	const [noSearchYet, setNoSearchYet] = useState<boolean>(true);
+	const [noSearchYet, setNoSearchYet] =
+		useState<boolean>(true);
 
-	const [isCardOpen, setIsCardOpen] = useState<boolean>(false);
+	//checks if pokemon card is open in order to slide pokemon in and out
+	const [isCardOpen, setIsCardOpen] =
+		useState<boolean>(false);
+
 
 	//Individual Pokemon
 	const [displayPoke, setDisplayPoke] = useState<pokemon>({
@@ -138,9 +138,11 @@ export const App = () => {
 							<Button
 								width='100%'
 								onClick={() => {
-									!noSearchYet && isCardOpen && updatePokeList();
+									!noSearchYet &&
+										isCardOpen &&
+										updatePokeList();
 								}}
-								_active={{ color: noSearchYet && 'tomato' }}
+								_active={{ color: (noSearchYet || (pokeList.length > 5)) && 'tomato' }}
 							>
 								Capture
 							</Button>
