@@ -47,7 +47,9 @@ export const App = () => {
 	const [pokeList, setPokeList] = useState<pokemon[]>([]);
 
 	//Before state (no search has happened)
-	const [noSearchYet, setNoSearchYet] = useState(true);
+	const [noSearchYet, setNoSearchYet] = useState<boolean>(true);
+
+	const [isCardOpen, setIsCardOpen] = useState<boolean>(false);
 
 	//Individual Pokemon
 	const [displayPoke, setDisplayPoke] = useState<pokemon>({
@@ -107,6 +109,7 @@ export const App = () => {
 							<Search
 								setPoke={setDisplayPoke}
 								setNoSearch={setNoSearchYet}
+								setCard={setIsCardOpen}
 							/>
 							{/* Display results from search in pokecard */}
 							{noSearchYet ? (
@@ -128,6 +131,7 @@ export const App = () => {
 									id={displayPoke.id}
 									stats={displayPoke.stats!}
 									imgName={displayPoke.img}
+									cardOpen={isCardOpen}
 								/>
 							)}
 							{/* capture button to add to sidebar */}

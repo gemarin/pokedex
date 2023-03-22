@@ -15,6 +15,7 @@ import {
 	StatNumber,
 	StatGroup,
 	Box,
+	SlideFade
 } from '@chakra-ui/react';
 
 import { STATS_TYPES } from '../API';
@@ -25,6 +26,7 @@ type Props = {
 	types: string[];
 	stats: string[];
 	imgName: string;
+	cardOpen: boolean; 
 };
 
 const Pokecard: React.FC<Props> = ({
@@ -33,9 +35,10 @@ const Pokecard: React.FC<Props> = ({
 	types,
 	stats,
 	imgName,
+	cardOpen
 }) => {
 	return (
-
+		<SlideFade in={cardOpen} offsetY='20px'>
 			<Box
 				maxW='500px'
 				w='100%'
@@ -86,7 +89,12 @@ const Pokecard: React.FC<Props> = ({
 							<>
 								{types.flat().map((type) => (
 									<>
-										<Badge display='inline-block' variant='subtle'>{type}</Badge>{' '}
+										<Badge
+											display='inline-block'
+											variant='subtle'
+										>
+											{type}
+										</Badge>{' '}
 										{/* <br /> */}
 									</>
 								))}
@@ -109,6 +117,7 @@ const Pokecard: React.FC<Props> = ({
 					))}
 				</StatGroup>
 			</Box>
+		</SlideFade>
 	);
 };
 

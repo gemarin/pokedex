@@ -38,13 +38,22 @@ const SidebarPoke: React.FC<Props> = ({
 				{capturedPoke.map((poke) => {
 					return (
 						<Image
+							transition='0.70s'
+							webkit-transition='0.70s'
+							moz-transition='0.70s'
+							ms-transition='0.70s'
+							o-transition='0.70s'
+							_hover={{
+								  backgroundColor: 'pink'
+
+
+							}}
 							backgroundColor={'gray.200'}
 							mt='1'
 							ml='12'
 							key={poke.id}
 							width='65px'
 							height='65px'
-
 							alt='Captured Pokemon'
 							src={poke.img}
 							objectFit='cover'

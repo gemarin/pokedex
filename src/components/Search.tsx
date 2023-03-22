@@ -17,11 +17,13 @@ type Dispatcher<S> = Dispatch<SetStateAction<S>>;
 type Props = {
 	setPoke: Dispatcher<pokemon>;
 	setNoSearch: Dispatcher<boolean>;
+	setCard: Dispatcher<boolean>;
 };
 
 const Search: React.FC<Props> = ({
 	setPoke,
 	setNoSearch,
+	setCard,
 }) => {
 	const [search, setSearch] = useState<string>('');
 	const [invalidSearch, setInvalidSearch] =
@@ -33,6 +35,7 @@ const Search: React.FC<Props> = ({
 		);
 		if (results !== undefined) {
 			setPoke(results);
+			setCard(true)
 			setNoSearch(false);
 			setSearch('');
 			setInvalidSearch(false);
@@ -54,7 +57,9 @@ const Search: React.FC<Props> = ({
 			/>
 			<Button
 				onClick={() => {
+					setCard(false);
 					executeSearch(search);
+
 				}}
 			>
 				Search
